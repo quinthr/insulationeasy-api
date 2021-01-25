@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Demystifying Email Design</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body style="margin: 0; padding: 0;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 10px 0 30px 0;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="700"
+                       style="border: 1px solid #cccccc; border-collapse: collapse;">
+                    <tr>
+                        <td align="center" bgcolor="#333"
+                            style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+                            <img src="https://insulationeasy.com.au/wp-content/uploads/2019/06/logo-png-e1564465409459.png"
+                                 alt="Creating Email Magic" style="display: block;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#ffffff" style="padding: 40px 25px 40px 25px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px; text-align:center;">
+                                        <b>Installation Form Order #: {entry.orderNumber}</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Insulation Easy Australia<br/>
+                                        Tel: 03 9687 7283<br/>
+                                        https://insulationeasy.com.au/<br/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px; text-align:left;">
+                                        <b>{entry.builderName}</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Address: {entry.address}<br/>
+                                        Date: {entry.date}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Items to be checked BEFORE commencement of the installation<br/>
+                                        {checklists_html}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Check all areas of the ceiling, if the ceiling is asbestos or you are unsure of its composition you must assume it is ASBESTOS and follow Higgins Asbestos Management Plan)<br/>
+                                        Comments<br/>
+                                        {entry.comments}<br/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Items to be checked AFTER commencement of the installation<br/>
+                                        {checklists_html2}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table style="border: 1px solid black; border-collapse: collapse; width: 100%">
+                                            <tr style="border: 1px solid black; border-collapse: collapse;">
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Hazard</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Probability</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Consequence</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Risk</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Control Measure</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Person</th>
+                                            </tr>
+                                            <tr style="border: 1px solid black; border-collapse: collapse;">
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].probability}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].consequence}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].risk}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].controlMeasure}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].person}</th>
+                                            </tr>
+                                            <tr style="border: 1px solid black; border-collapse: collapse;">
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].probability}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].consequence}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].risk}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].controlMeasure}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].person}</th>
+                                            </tr>
+                                            <tr style="border: 1px solid black; border-collapse: collapse;">
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].probability}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].consequence}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].risk}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].controlMeasure}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].person}</th>
+                                            </tr>
+                                            <tr style="border: 1px solid black; border-collapse: collapse;">
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].probability}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].consequence}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].risk}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].controlMeasure}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].person}</th>
+                                            </tr>
+                                            <tr style="border: 1px solid black; border-collapse: collapse;">
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].probability}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].consequence}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].risk}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].controlMeasure}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].person}</th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Worksite Evaluated by: {entry.workSiteEvaluator}<br/>
+                                        Date: {entry.workSiteEvaluatedDate}<br/>
+                                        Signature Attached below<br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Builder Confirmation: {entry.builderConfirmation}<br/>
+                                        Date: {entry.builderConfirmationDate}<br/>
+                                        Signature Attached below<br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Assessor's Name: {entry.assessorName}<br/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        Geoff Aldridge<br/>
+                                        Manager<br/>
+                                        Insulation Easy Australia<br/>
+                                        geoff@insulationeasy.com.au<br/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px; float:right;">
+                                        <br/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#333" style="padding: 30px 30px 30px 30px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;"
+                                        width="75%">
+                                        &reg;2020 Insulation Easy Australia<br/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    </body>
+    </html>
+    --
+    This e-mail was sent from a contact form on Insulation Easy Australia (https://insulationeasy.com.au)

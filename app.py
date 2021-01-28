@@ -244,9 +244,9 @@ def generateFormPDF(data):
     pdf.setTitle('Insulation Easy Safety Installation Form')
     pdf.drawImage('./assets/images/logo.png', 20, 790, width=150, height=35, mask='auto')
     pdf.setFont(psfontname='Helvetica', size=20)
-    pdf.drawCentredString(325, 795, 'Safe Work Method Statement')
+    pdf.drawCentredString(325, 795, 'Job Safety Analysis')
     pdf.setFont(psfontname='Helvetica', size=12)
-    pdf.drawCentredString(300, 770, '*** SWMS MUST BE COMPLETED BEFORE STARTING WORK ***')
+    pdf.drawCentredString(300, 770, '*** JSA MUST BE COMPLETED BEFORE STARTING WORK ***')
     pdf.setFont(psfontname='Helvetica', size=14)
     pdf.drawString(30, 740, f'Order #: {entry.orderNumber}')
     pdf.drawString(450, 740, f'Date: {entry.date}')
@@ -254,88 +254,389 @@ def generateFormPDF(data):
     pdf.drawString(30, 700, f'Address: {entry.address}')
     pdf.drawString(30, 680, 'Items to be checked BEFORE commencement of the installation:')
     pdf.setFont(psfontname='Helvetica', size=12)
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked1,
-                  x=35, y=660)
-    pdf.drawString(50, 661, 'General State of the Work Site is SAFE and Tidy')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked2,
-                  x=35, y=640)
-    pdf.drawString(50, 641, 'Ceiling has no cracks')
+    pdf.drawString(35, 661, 'General State of the Work Site is SAFE and Tidy?')
+    if _checked1:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=305, y=660)
+        pdf.drawString(317, 661, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=345, y=660)
+        pdf.drawString(357, 661, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked3,
-                  x=35, y=620)
-    pdf.drawString(50, 621, 'Floors clean and tidy')
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=305, y=660)
+        pdf.drawString(317, 661, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=345, y=660)
+        pdf.drawString(357, 661, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked4,
-                  x=35, y=600)
-    pdf.drawString(50, 601, 'A safety environment exists')
+    pdf.drawString(35, 641, 'Ceiling has no cracks?')
+    if _checked2:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=160, y=640)
+        pdf.drawString(172, 641, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=200, y=640)
+        pdf.drawString(212, 641, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked5,
-                  x=35, y=580)
-    pdf.drawString(50, 581, 'Lights in place & in working order')
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=160, y=640)
+        pdf.drawString(172, 641, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=200, y=640)
+        pdf.drawString(212, 641, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked6,
-                  x=35, y=560)
-    pdf.drawString(50, 561, 'Is the ceiling lining made of asbestos?')
+
+    pdf.drawString(35, 621, 'Floors clean and tidy?')
+    if _checked3:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=160, y=620)
+        pdf.drawString(172, 621, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=200, y=620)
+        pdf.drawString(212, 621, 'No')
+
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=160, y=620)
+        pdf.drawString(172, 621, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=200, y=620)
+        pdf.drawString(212, 621, 'No')
+
+    pdf.drawString(35, 601, 'A safety environment exists?')
+    if _checked4:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=190, y=600)
+        pdf.drawString(202, 601, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=230, y=600)
+        pdf.drawString(242, 601, 'No')
+
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=190, y=600)
+        pdf.drawString(202, 601, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=230, y=600)
+        pdf.drawString(242, 601, 'No')
+
+    pdf.drawString(35, 581, 'Lights in place & in working order?')
+    if _checked5:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=220, y=580)
+        pdf.drawString(232, 581, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=260, y=580)
+        pdf.drawString(272, 581, 'No')
+
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=220, y=580)
+        pdf.drawString(232, 581, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=260, y=580)
+        pdf.drawString(272, 581, 'No')
+
+    pdf.drawString(35, 561, 'Is the ceiling lining made of asbestos?')
+    if _checked6:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=240, y=560)
+        pdf.drawString(252, 561, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=280, y=560)
+        pdf.drawString(292, 561, 'No')
+
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=240, y=560)
+        pdf.drawString(252, 561, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=280, y=560)
+        pdf.drawString(292, 561, 'No')
 
     pdf.setFont(psfontname='Helvetica', size=14)
     pdf.drawString(30, 540, 'Items to be checked AFTER commencement of the installation:')
     pdf.setFont(psfontname='Helvetica', size=12)
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked11,
-                  x=35, y=520)
-    pdf.drawString(50, 521, 'General State of the Work Site is SAFE and Tidy')
+    pdf.drawString(35, 521, 'General State of the Work Site is SAFE and Tidy?')
+    if _checked11:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=305, y=520)
+        pdf.drawString(317, 521, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=345, y=520)
+        pdf.drawString(357, 521, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked12,
-                  x=35, y=500)
-    pdf.drawString(50, 501, 'Ceiling has no cracks')
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=305, y=520)
+        pdf.drawString(317, 521, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=345, y=520)
+        pdf.drawString(357, 521, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked13,
-                  x=35, y=480)
-    pdf.drawString(50, 481, 'Floors clean and tidy')
+    pdf.drawString(35, 501, 'Ceiling has no cracks?')
+    if _checked12:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=160, y=500)
+        pdf.drawString(172, 501, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=200, y=500)
+        pdf.drawString(212, 501, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked14,
-                  x=35, y=460)
-    pdf.drawString(50, 461, 'Lights in place & in working order')
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=160, y=500)
+        pdf.drawString(172, 501, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=200, y=500)
+        pdf.drawString(212, 501, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked15,
-                  x=35, y=440)
-    pdf.drawString(50, 441, 'Insulation packaging removed from site')
+    pdf.drawString(35, 481, 'Floors clean and tidy?')
+    if _checked13:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=160, y=480)
+        pdf.drawString(172, 481, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=200, y=480)
+        pdf.drawString(212, 481, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked16,
-                  x=35, y=420)
-    pdf.drawString(50, 421, 'Access Aperture clean')
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=160, y=480)
+        pdf.drawString(172, 481, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=200, y=480)
+        pdf.drawString(212, 481, 'No')
 
-    form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'), fillColor=HexColor('#FFFFFF'),
-                  textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
-                  checked=_checked17,
-                  x=35, y=400)
-    pdf.drawString(50, 401,
+    pdf.drawString(35, 461, 'Lights in place & in working order?')
+    if _checked14:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=220, y=460)
+        pdf.drawString(232, 461, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=260, y=460)
+        pdf.drawString(272, 461, 'No')
+
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=220, y=460)
+        pdf.drawString(232, 461, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=260, y=460)
+        pdf.drawString(272, 461, 'No')
+
+    pdf.drawString(35, 441, 'Insulation packaging removed from site?')
+    if _checked17:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=260, y=440)
+        pdf.drawString(272, 441, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=300, y=440)
+        pdf.drawString(312, 441, 'No')
+
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=260, y=440)
+        pdf.drawString(272, 441, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=300, y=440)
+        pdf.drawString(312, 441, 'No')
+
+    pdf.drawString(35, 421, 'Access Aperture clean?')
+    if _checked16:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=170, y=420)
+        pdf.drawString(182, 421, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=210, y=420)
+        pdf.drawString(222, 421, 'No')
+
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=170, y=420)
+        pdf.drawString(182, 421, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=210, y=420)
+        pdf.drawString(222, 421, 'No')
+
+    pdf.drawString(35, 401,
                    'Default minimum clearance of insulation around all recessed lights and electrical equipment')
-    pdf.drawString(50, 380, 'achieved as per AS/NZS 3000:2007')
+    pdf.drawString(50, 381, 'achieved as per AS/NZS 3000:2007?')
+    if _checked17:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=260, y=380)
+        pdf.drawString(272, 381, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=300, y=380)
+        pdf.drawString(312, 381, 'No')
+
+    else:
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=False,
+                      x=260, y=380)
+        pdf.drawString(272, 381, 'Yes')
+        form.checkbox(borderStyle='solid', borderWidth=1, borderColor=HexColor('#000000'),
+                      fillColor=HexColor('#FFFFFF'),
+                      textColor=HexColor('#000000'), forceBorder=True, size=10, fieldFlags=1,
+                      checked=True,
+                      x=300, y=380)
+        pdf.drawString(312, 381, 'No')
 
     pdf.drawString(30, 360,
                    '(Check all areas of the ceiling, if the ceiling is asbestos or you are unsure of its composition you')
@@ -471,13 +772,13 @@ def sendEmail():
             if str(checklist_dict['text']) == str(checklist.text):
                 checklist_dict['checked'] = 'true'
         if checklist_dict['checked'] == 'true' and index < 7:
-            checklists_html = checklists_html + "&#10003; "+checklist_dict['checkName']+"<br />"
+            checklists_html = checklists_html + " "+checklist_dict['checkName']+"? &#9745; Yes &#9744; No<br />"
         elif checklist_dict['checked'] == 'false' and index < 7:
-            checklists_html = checklists_html + "&#10005; " + checklist_dict['checkName'] + "<br />"
+            checklists_html = checklists_html + " "+checklist_dict['checkName']+"? &#9744; Yes &#9745; No<br />"
         elif checklist_dict['checked'] == 'true' and index >= 7:
-            checklists_html2 = checklists_html2 + "&#10003; " + checklist_dict['checkName'] + "<br />"
+            checklists_html2 = checklists_html2 + " " + checklist_dict['checkName'] + "? &#9745; Yes &#9744; No<br />"
         elif checklist_dict['checked'] == 'false' and index >= 7:
-            checklists_html2 = checklists_html2 + "&#10005; " + checklist_dict['checkName'] + "<br />"
+            checklists_html2 = checklists_html2 + " " + checklist_dict['checkName'] + "? &#9744; Yes &#9745; No<br />"
         index = index + 1
 
     msg = EmailMessage()
@@ -566,7 +867,7 @@ def sendEmail():
                                                 <th style="border: 1px solid black; border-collapse: collapse;">Person</th>
                                             </tr>
                                             <tr style="border: 1px solid black; border-collapse: collapse;">
-                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Electrocution</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].probability}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].consequence}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].risk}</th>
@@ -574,7 +875,7 @@ def sendEmail():
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[0].person}</th>
                                             </tr>
                                             <tr style="border: 1px solid black; border-collapse: collapse;">
-                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Biohazards, Snakes and Spiders</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].probability}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].consequence}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].risk}</th>
@@ -582,7 +883,7 @@ def sendEmail():
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[1].person}</th>
                                             </tr>
                                             <tr style="border: 1px solid black; border-collapse: collapse;">
-                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Heat</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].probability}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].consequence}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].risk}</th>
@@ -590,7 +891,7 @@ def sendEmail():
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[2].person}</th>
                                             </tr>
                                             <tr style="border: 1px solid black; border-collapse: collapse;">
-                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Falls from Height</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].probability}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].consequence}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].risk}</th>
@@ -598,7 +899,7 @@ def sendEmail():
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[3].person}</th>
                                             </tr>
                                             <tr style="border: 1px solid black; border-collapse: collapse;">
-                                                <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].hazardName}</th>
+                                                <th style="border: 1px solid black; border-collapse: collapse;">Asbestos (lagging or loose fill insulation)</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].probability}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].consequence}</th>
                                                 <th style="border: 1px solid black; border-collapse: collapse;">{hazards[4].risk}</th>
@@ -620,11 +921,6 @@ def sendEmail():
                                         Builder Confirmation: {entry.builderConfirmation}<br/>
                                         Date: {entry.builderConfirmationDate}<br/>
                                         Signature Attached below<br />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                                        Assessor's Name: {entry.assessorName}<br/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -678,8 +974,8 @@ def sendEmail():
         print(signature.signatureName)
         msg.add_attachment(signature.signatureImage, maintype='image', subtype=imghdr.what(None, signature.signatureImage), filename=signature.signatureName)
 
-    fileName = f'pdf\InsulationEasyForm-{entry.orderNumber}.pdf'
-    with open(fileName, 'rb') as f:
+    pdffile = f'pdf/InsulationEasyForm-{entry.orderNumber}.pdf'
+    with open(pdffile, 'rb') as f:
         file_data = f.read()
         file_name = f.name
 
@@ -690,7 +986,6 @@ def sendEmail():
         smtp.send_message(msg)
 
     return jsonify({'message': 'Added successfully!'})
-
 
 
 if __name__ == '__main__':
